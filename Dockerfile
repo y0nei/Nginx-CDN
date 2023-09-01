@@ -33,9 +33,9 @@ RUN CONFARGS=$(nginx -V 2>&1 | sed -n -e "s/^.*arguments: //p") \
         --add-dynamic-module=$FANCYINDEX_DIR \
     " \
     && mkdir -p /usr/src \
-	&& tar -zxC /usr/src -f nginx.tar.gz \
+    && tar -zxC /usr/src -f nginx.tar.gz \
     && tar -xzvf nginx-fancyindex.tar.gz \
-	&& rm -f nginx.tar.gz nginx-fancyindex.tar.gz \
+    && rm -f nginx.tar.gz nginx-fancyindex.tar.gz \
     && cd /usr/src/nginx-$NGINX_VERSION \
     && ./configure $CONFIG \
     && make && make install
