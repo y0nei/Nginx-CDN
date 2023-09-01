@@ -1,0 +1,19 @@
+services:
+  nginx:
+    build:
+      context: .
+    container_name: "NginxCDN"
+    command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: wget -nv --tries=1 --spider http://localhost || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./content/:/etc/nginx/html:ro"
