@@ -52,5 +52,3 @@ COPY --from=builder /usr/lib/nginx/modules/ngx_http_fancyindex_module.so /usr/li
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
-
-STOPSIGNAL SIGQUIT
